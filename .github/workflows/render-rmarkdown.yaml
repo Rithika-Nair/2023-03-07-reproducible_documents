@@ -1,4 +1,5 @@
 on:
+  workflow_dispatch:
   push:
     paths:
       - penguins.Rmd
@@ -15,6 +16,6 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
-      - name: Render README
+      - name: Render report
         run: Rscript -e 'rmarkdown::render("analysis/penguins.Rmd")'
       - name: Commit results

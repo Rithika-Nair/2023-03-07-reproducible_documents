@@ -8,14 +8,10 @@ name: Render report
 
 jobs:
   render:
-    name: Render report
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: r-lib/actions/setup-r@v1
-      - uses: r-lib/actions/setup-pandoc@v1
-      - name: Install rmarkdown
-        run: Rscript -e 'install.packages("rmarkdown")'
-      - name: Render report
-        run: Rscript -e 'rmarkdown::render("analysis/penguins.Rmd")'
-      - name: Commit results
+      - name: checkout repo
+        uses: actions/checkout@v2
+        
+      - name: build report
+        run: make all
